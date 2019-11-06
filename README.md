@@ -1,1 +1,1 @@
-# blogTry
+# Recipes exercise
