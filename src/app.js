@@ -58,11 +58,7 @@ const resolvers = {
 		ingredients:(parent, args, ctx, info) => {
 			const ingredientID = parent.ingredient;
 			const result = [];
-			const result = ingredientData.map(function(elem) => {
-				if(elem.id === ingredientID){
-					result.push(elem);
-				}
-			};
+			const result = ingredientData.filter(obj => obj.id === ingredientID);
 			return result;
 		}
     },
@@ -92,7 +88,7 @@ const resolvers = {
                 throw new Error (`No recipe by user ${args.id}`);
             }
 			
-			const result = authorData.find(obj=>obj.id === args.id)
+			const result = recipeData.find(obj=>obj.author === args.id)
             return result;
         },
 		
@@ -100,11 +96,7 @@ const resolvers = {
             if(!recipeData.some(obj=>obj.ingredient === args.id)){
                 throw new Error (`No recipe with ingredient ${args.ingredient}`);
             }
-            const result = authorData.map(function(elem) => {
-				if(elem.ingredient === args.id){
-					result.push(elem);
-				}
-			};
+            const result = recipeData.filter(obj => obj.ingredients.some(obj => obj === args.id));
             return result;
         }
     },
@@ -145,7 +137,7 @@ const resolvers = {
             return recipe;
         },
 		
-		addIngredient: (parent, args, ctx, info) => {
+	addIngredient: (parent, args, ctx, info) => {
             const {name} = args;
             if (ingredientData.some(obj=>obj.name === name)){
                 throw new Error(`Ingredient with name ${name} already exist`);
