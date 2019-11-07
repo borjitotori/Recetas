@@ -88,16 +88,15 @@ const resolvers = {
                 throw new Error (`No recipe by user ${args.id}`);
             }
 			
-			const result = recipeData.find(obj=>obj.author === args.id)
-            return result;
+            return recipeData.find(obj=>obj.author === args.id);
         },
 		
-		ingredientRecipes: (parent, args, ctx, info) => {
+	ingredientRecipes: (parent, args, ctx, info) => {
             if(!recipeData.some(obj=>obj.ingredient === args.id)){
                 throw new Error (`No recipe with ingredient ${args.ingredient}`);
             }
-            const result = recipeData.filter(obj => obj.ingredients.some(obj => obj === args.id));
-            return result;
+            
+            return recipeData.filter(obj => obj.ingredients.some(obj => obj === args.id));;
         }
     },
 
@@ -125,11 +124,11 @@ const resolvers = {
             }
 
             const recipe = {
-                title: title,
-                description: body,
+                title,
+                description,
                 id: uuid.v4(),
-                author: author,
-				ingredients: ingredients,
+                author,
+		ingredients,
                 date: new Date().getDate()
             }
 
