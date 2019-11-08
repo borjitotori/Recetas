@@ -50,3 +50,9 @@ mutation{
   deleteAuthor(id: "ID del usuario que vamos a borrar")
 }
 ```
+
+Por ultimo tenemos las modificaciones:
++ actualizeAuthor(id: ID!, name: String, email: String)
++ actualizeRecipe(id: ID!, title: String, description: String, addingredients: [ID], delingredients: [ID])
++ actualizeIngredient(id: ID!, name: String)
+
