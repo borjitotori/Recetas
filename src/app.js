@@ -216,7 +216,7 @@ const resolvers = {
                 recipeData.find(obj => obj.id === id).description=description
             }
             if(addingredient){
-                recipeData.find(obj => obj.id === id).ingredients.push(ingredientData.find(obj => obj.id === addingredient));
+                recipeData.find(obj => obj.id === id).ingredients.push(addingredient);
             }
             if(delingredient){
                 recipeData.find(obj => obj.id === id).ingredients.splice(recipeData.findIndex(obj => obj.ingredients === delingredient), 1)
