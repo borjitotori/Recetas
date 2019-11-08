@@ -15,8 +15,8 @@ const typeDefs=`
         authors: [Author!]
         recipes: [Recipe!]
         ingredients: [Ingredient!]
-		authorRecipes (id: ID!): [Recipe!]
-		ingredientRecipes (id: ID!): [Recipe!]
+	authorRecipes (id: ID!): [Recipe!]
+	ingredientRecipes (id: ID!): [Recipe!]
     }
     type Author {
         id: ID!,
@@ -45,7 +45,7 @@ const typeDefs=`
         deleteAuthor(id: ID!): String!
         deleteIngredient(id: ID!): String!
         actualizeAuthor(id: ID!, name: String, email: String): String!
-        actualizeRecipe(id: ID!, title: String, description: String, addingredient: ID, delingredient: ID): String!
+        actualizeRecipe(id: ID!, title: String, description: String, addingredients: [ID], delingredients: [ID]): String!
         actualizeIngredient(id: ID!, name: String): String!
     }
 `
@@ -215,12 +215,14 @@ const resolvers = {
             if(description){
                 recipeData.find(obj => obj.id === id).description=description
             }
-            if(addingredient){
+            if(addingredients){
                 recipeData.find(obj => obj.id === id).ingredients.push(addingredient);
             }
-            if(delingredient){
-                recipeData.find(obj => obj.id === id).ingredients.splice(recipeData.findIndex(obj => obj.ingredients === delingredient), 1)
-            }
+            if(delingredients){
+		recipeData.map(function()=>{
+                	recipeData.find(obj => obj.id === id).ingredients.splice(recipeData.findIndex(obj => obj.ingredients === delingredient), 1)
+	    	})
+	    }
             return message
         }
     }
