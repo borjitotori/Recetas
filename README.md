@@ -16,7 +16,7 @@ query{
   }
 }
 ```
- para filtrar las recetas se usan dos querys: authorRecipes y ingredientRecipes
+ Para filtrar las recetas se usan dos querys: authorRecipes y ingredientRecipes
  
  ```graphql
 query{
@@ -31,7 +31,7 @@ query{
 
 ## Mutaciones
 
-existen tres tipo de mutaciones, de añadido: addRecipe, addIngredient, addAuthor donde tenemos que añadir los datos que no sean de tipo ID ó Recipe
+Existen tres tipo de mutaciones, de añadido: addRecipe, addIngredient, addAuthor donde tenemos que añadir los datos que no sean de tipo ID ó Recipe
 
 ```graphql
 mutation{
@@ -40,5 +40,13 @@ mutation{
     id
     email
   }
+}
+```
+
+Tambien hay mutaciones de eliminacion:  deleteRecipe, deleteAuthor, deleteIngredient en este caso solo nos devuelve un mensaje donde se confirma que se ha eliminado el elemto y en caso de ser un autor o ingrediente sus recetas tambien se han borrado
+
+```graphql
+mutation{
+  deleteAuthor(id: "ID del usuario que vamos a borrar")
 }
 ```
