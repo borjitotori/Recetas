@@ -56,3 +56,8 @@ Por ultimo tenemos las modificaciones:
 + actualizeRecipe(id: ID!, title: String, description: String, addingredients: [ID], delingredients: [ID])
 + actualizeIngredient(id: ID!, name: String)
 
+```graphql
+mutation{
+  actualizeAuthor(id: "ID del usuario que vamos a modificar", name: "nuevo nombre", email: "nuevo email")
+}
+```
